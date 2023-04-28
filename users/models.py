@@ -44,9 +44,13 @@ class User(AbstractBaseUser):
         unique=True,
     )
     name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=10)
-    age = models.IntegerField(null=True)
-    introduction = models.TextField(null=True)
+    GENDER_CHOICES = (
+        ("M","Male"),
+        ("F","Female"),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    age = models.IntegerField(null=True, blank=True)
+    introduction = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
