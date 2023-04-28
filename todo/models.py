@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-from datetime import datetime
+import datetime
 
 
 class Todo(models.Model):
@@ -13,8 +13,9 @@ class Todo(models.Model):
 
     def __str__(self):
         return str(self.title)
-    
+
     def complete_check(self):
+        '''is_complete가 True가 될 때 completion_at의 시간을 기록하고 싶은 함수'''
         if self.is_complete == True:
             self.completion_at = datetime.datetime.now()
         return self.completion_at
