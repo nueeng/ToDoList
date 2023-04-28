@@ -4,12 +4,10 @@ from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer): # 로그아웃 구현 여기서인가? 로컬스토리지 jwt 로그아웃 찾아보기
-
     class Meta:
         model = User
         fields = ['email', 'name', 'gender', 'age', 'introduction']
-        read_only_fields = ['email']
-
+        
     def create(self, validated_data):
         user = super().create(validated_data) # DB에 저장
         password = user.password
@@ -26,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer): # 로그아웃 구현 여기�
         return user
 
 
-class TokenObtainPairSerializer(TokenObtainPairSerializer):
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)

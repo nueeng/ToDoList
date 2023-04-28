@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from users.models import User
 from users.serializers import UserSerializer
-from users.serializers import UserSerializer, TokenObtainPairSerializer
+from users.serializers import UserSerializer, CustomTokenObtainPairSerializer
 
 
 class UserView(APIView):
@@ -44,5 +44,5 @@ class UserUpdateView(APIView):
             return Response("권한이 없습니다.", status=status.HTTP_403_FORBIDDEN)
 
 
-class TokenObtainPairView(TokenObtainPairView):
-    serializer_class = TokenObtainPairSerializer
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
