@@ -6,7 +6,6 @@ from rest_framework.generics import get_object_or_404
 from todo.models import Todo
 from todo.serializers import TodoSerializer, TodoCreateSerializer, TodoListSerializer
 
-
 class TodoView(APIView):
     def get(self, request):
         '''해야할 일 조회 함수'''
@@ -31,6 +30,7 @@ class TodoUpdateView(APIView):
         if request.user == todo.user:
             serializer = TodoCreateSerializer(todo, data=request.data)
             if serializer.is_valid():
+                Todo.complete_check(todo)
                 serializer.save() # 여기는 유저정보 todo정보에 이미 저장되어있어서 안넣어줘도 됨
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
