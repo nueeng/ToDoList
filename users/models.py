@@ -38,19 +38,20 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     '''유저 모델'''
+    GENDER_CHOICES = (
+        ("M","Male"),
+        ("F","Female"),
+    )
     email = models.EmailField(
         verbose_name="이메일",
         max_length=255,
         unique=True,
     )
     name = models.CharField('이름', max_length=50)
-    GENDER_CHOICES = (
-        ("M","Male"),
-        ("F","Female"),
-    )
+    password = models.CharField('비밀번호', max_length=256)
     gender = models.CharField('성별', max_length=1, choices=GENDER_CHOICES)
     age = models.IntegerField('나이', null=True, blank=True)
-    introduction = models.TextField('소개', null=True, blank=True)
+    introduction = models.TextField('소개', null=True, blank=True, default="")
     is_active = models.BooleanField('활성화여부', default=True)
     is_admin = models.BooleanField('관리자여부', default=False)
 

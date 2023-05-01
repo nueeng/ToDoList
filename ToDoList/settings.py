@@ -110,7 +110,7 @@ TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False # https://velog.io/@inyong_pang/Django-RuntimeWarning-DateTimeField-received-a-naive-datetime
 
 
 # Static files (CSS, JavaScript, Images)

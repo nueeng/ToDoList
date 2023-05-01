@@ -3,7 +3,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from users.models import User
 
 
-class UserSerializer(serializers.ModelSerializer): # 로그아웃 구현 여기서인가? 로컬스토리지 jwt 로그아웃 찾아보기
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'name', 'gender', 'age', 'introduction']
